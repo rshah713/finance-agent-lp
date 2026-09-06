@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finance Agent — Student organization budget tools</title>
+  <meta name="description" content="Finance Agent is an LLM tool that reads your club’s official Google Sheet and files receipt evidence. We keep zero data on our servers — Sheets and Drive stay the source of truth.">
+  <meta name="theme-color" content="#17191e">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Finance Agent">
+  <meta property="og:description" content="An LLM tool for the official club budget. Zero data on our servers.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="index.html">finance-agent</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#what">what</a>
+      <a href="#access">access</a>
+      <a href="privacy.html">privacy</a>
+      <a href="terms.html">terms</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Finance Agent</h1>
+      <p class="sub">LLM tool for the club budget @ <code>NJIT</code></p>
+      <p>
+        Sits in front of the Google Sheet your treasurer already keeps.
+        A language model can list events, inspect line items, and file a receipt
+        to the right row — without Editor access, a laptop, or a second ledger.
+      </p>
+      <p>We keep <code>0</code> data on our servers.</p>
+      <div class="tags" aria-label="Systems of record">
+        <span>llm-tool</span>
+        <span>google-sheets</span>
+        <span>google-drive</span>
+        <span>@njit.edu</span>
+      </div>
+
+      <div class="sheet" aria-label="Example budget view">
+        <div class="event">actual · diwali night</div>
+        <div class="row"><span>dj</span><span>800 → 750</span><span class="ok">receipt</span></div>
+        <div class="row"><span>decor</span><span>200 → 185</span><span class="ok">receipt</span></div>
+        <div class="row"><span>food</span><span>400 → —</span><span class="pending">open</span></div>
+      </div>
+    </section>
+
+    <section id="what">
+      <h2><span class="angle">&lt;</span>what-it-does<span class="angle">&gt;</span></h2>
+      <article class="item">
+        <div class="item-head">
+          <strong>LLM tool</strong>
+          <span>not a chatbot with a spreadsheet hobby</span>
+        </div>
+        <p>Built to be invoked by a language model — list events, list line items, upload a receipt. The model isn’t inventing a budget. It’s calling this service, which is staring at the same cells the treasurer uses.</p>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <strong>Year at a glance</strong>
+          <span>live actual tab</span>
+        </div>
+        <p>Returns every event already on the sheet, in the treasurer’s order. If it’s on the budget, it’s in the list. No second calendar.</p>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <strong>Zoom into one event</strong>
+          <span>planned · actual · notes</span>
+        </div>
+        <p>Ask for an event and see line items. Subtotals are skipped. Ambiguous names resolve to the line item, not a guess at the whole night.</p>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <strong>File a receipt</strong>
+          <span>drive link on the receipts tab</span>
+        </div>
+        <p>A photo is stored in Google Drive. A row is appended: event, line item, link, timestamp, filename. Evidence is attached. Budget numbers are never overwritten.</p>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <strong>Zero data on our servers</strong>
+          <span>nothing persisted</span>
+        </div>
+        <p>No copies of the sheet, no receipt images, no shadow ledger. After a request finishes, our servers hold zero user data. Sheets and Drive are the only systems of record.</p>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <strong>NJIT stays in the org</strong>
+          <span>@njit.edu visibility</span>
+        </div>
+        <p>Receipts are visible to people signed in as @njit.edu — the same campus share you’d pick in Drive. Not posted to the open internet.</p>
+      </article>
+    </section>
+
+    <section id="how">
+      <h2><span class="angle">&lt;</span>how-it-works<span class="angle">&gt;</span></h2>
+      <article class="item">
+        <div class="item-head">
+          <strong>01 · an LLM calls the tool</strong>
+        </div>
+        <p>Expose Finance Agent to any language-model assistant: list events, list line items, upload a receipt. The club’s sms-agent is one such caller.</p>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <strong>02 · sheets and drive stay canonical</strong>
+        </div>
+        <p>Google Sheets remains the official budget. Google Drive stores the image. Automation is not a shadow ledger and does not invent events that aren’t headers on actual.</p>
+      </article>
+      <article class="item">
+        <div class="item-head">
+          <strong>03 · treasurers reconcile in place</strong>
+        </div>
+        <p>Officers send a picture and get a link that lands on the right row. Two people dumping receipts at once don’t clobber each other — the sheet gets one append at a time.</p>
+      </article>
+    </section>
+
+    <section id="access">
+      <h2><span class="angle">&lt;</span>google-access<span class="angle">&gt;</span></h2>
+      <p class="note">
+        Google Cloud application used as an LLM tool by authorized officers.
+        It requests Google authorization only to operate on the org’s existing finance files.
+        We keep <code>0</code> data on our servers.
+      </p>
+      <ul class="access-list">
+        <li><strong>Google Sheets</strong> — read the live budget (actual) tab; append receipt log rows. Planned and actual amounts are not rewritten.</li>
+        <li><strong>Google Drive</strong> — store receipt photos and return a link the treasurer can open from the sheet they already audit.</li>
+        <li><strong>No server-side store</strong> — budget rows, receipt files, and Google user content are not retained on Finance Agent servers.</li>
+        <li><strong>Domain restriction</strong> — receipt files are shared with the NJIT Workspace (<code>@njit.edu</code>), not made public.</li>
+      </ul>
+      <p class="note">
+        Use of information received from Google APIs adheres to the
+        <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>,
+        including the Limited Use requirements. See
+        <a href="privacy.html">privacy</a> and
+        <a href="terms.html">terms</a>.
+      </p>
+      <ul class="never">
+        <li>keeps zero data on our servers — nothing to export, sell, or leak from our side</li>
+        <li>does not mark a line paid or change remaining balances</li>
+        <li>does not sell data, serve ads, or train unrelated models on Google user content</li>
+        <li>does not replace officer judgment or OSIL review</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer">
+    <div class="footer-row">
+      <p>© 2026 Finance Agent · 0 data on our servers</p>
+      <div class="footer-links">
+        <a href="privacy.html">privacy</a>
+        <a href="terms.html">terms</a>
+        <a href="#access">access</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
